@@ -1,0 +1,11 @@
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/mobile_base.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/camera.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/arm.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/my_robot.urdf.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/common_properties.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/arm_base.urdf.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/mobile_base_gazebo.xacro
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//urdf/arm_base.urdf
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//launch/display.launch.py
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//launch/display.launch.xml
+/home/subash/ros2_ws/src/install/my_robot_description/share/my_robot_description//rviz/config.rviz
