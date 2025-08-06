@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Add your lidar sensor definition here -->
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.1" />
+            </geometry>
+            <material name="red" />
+        </visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <collision>
+            <geometry>
+                <cylinder radius="0.05" length="0.1" />
+            </geometry>
+        </collision>
+        <xacro:box_inertial m="0.1" l="0.1" w="0.1" h="0.1"
+                           xyz="0 0 0" rpy="0 0 0" />
+    </link>
+
+    <joint name="base_lidar_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lidar_link" />
+        <!-- Fixed the syntax error: added missing closing parenthesis -->
+        <origin xyz="${base_length/4.0} 0 ${base_height + 0.05}" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gazebo plugin for RPLiDAR A1 -->
+    <gazebo reference="lidar_link">
+        <material>Gazebo/Red</material>
+        <sensor type="ray" name="rplidar_a1_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <!-- RPLiDAR A1 specifications -->
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.141592654</min_angle>
+                        <max_angle>3.141592654</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <!-- RPLiDAR A1 range specifications -->
+                    <min>0.15</min>
+                    <max>12.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <!-- Realistic noise for RPLiDAR A1 -->
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.02</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_rplidar_a1_controller" filename="libgazebo_ros_laser.so">
+                <topicName>/scan</topicName>
+                <frameName>lidar_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>
