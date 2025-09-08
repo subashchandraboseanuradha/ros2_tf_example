@@ -9,7 +9,7 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
 
-    joy_params = os.path.join(get_package_share_directory('my_bot'),'config','joystick.yaml')
+    joy_params = os.path.join(get_package_share_directory('my_robot_bringup'),'config','joystick.yaml')
 
     # Print a message about the time source being used
     log_time_source = LogInfo(
