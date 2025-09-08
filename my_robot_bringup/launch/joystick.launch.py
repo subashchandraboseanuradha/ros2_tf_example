@@ -10,6 +10,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
 
     joy_params = os.path.join(get_package_share_directory('my_robot_bringup'),'config','joystick.yaml')
+    # If running twist_mux separately, no need for mux params here
 
     # Print a message about the time source being used
     log_time_source = LogInfo(
@@ -34,9 +35,12 @@ def generate_launch_description():
             executable='teleop_node',
             name='teleop_node',
             parameters=[joy_params, {'use_sim_time': use_sim_time}],
-            
+            remappings=[('/cmd_vel','/cmd_vel_joy')],
             output='screen',
          )
+
+    
+   
 
     # For Humble, we might need the twist_stamper if using stamped velocity commands
     # Uncomment if needed later
