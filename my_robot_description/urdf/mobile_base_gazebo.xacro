@@ -1,60 +1,51 @@
-<?xml version="1.0"?>
-<!-- This file is a Gazebo-specific extension of the mobile_base.xacro file.
-     It includes Gazebo-specific elements like materials and plugins. -->
 <robot name="my_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-<!-- Material properties for the links in Gazebo -->
-<gazebo reference="base_link">
-  <material>Gazebo/Blue</material>
-</gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
 
-<gazebo reference="right_wheel">
-  <material>Gazebo/Red</material>
-  <mu1 value="1.0"/>
-  <mu2 value="1.0"/>
-</gazebo>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/Red</material>
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+  </gazebo>
 
-<gazebo reference="left_wheel">
-  <material>Gazebo/Red</material>
-  <mu1 value="1.0"/>
-  <mu2 value="1.0"/>
-</gazebo>
+  <gazebo reference="left_wheel">
+    <material>Gazebo/Red</material>
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+  </gazebo>
 
-<gazebo reference="caster_wheel">
-  <material>Gazebo/Red</material>
-  <mu1 value="0.1"/>
-  <mu2 value="0.1"/>
-</gazebo>
+  <gazebo reference="caster_wheel">
+    <material>Gazebo/Red</material>
+    <mu1 value="0.1"/>
+    <mu2 value="0.1"/>
+  </gazebo>
 
-<!-- Gazebo plugin for differential drive -->
-<gazebo>
-  <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
-    <!-- Update rate in Hz -->
-    <update_rate>50</update_rate>
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
 
-    <!-- Joints for the wheels -->
-    <left_joint>left_wheel_joint</left_joint>
-    <right_joint>right_wheel_joint</right_joint>
+        <!-- Wheel Information -->
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>0.4</wheel_separation>
+        <wheel_diameter>0.2</wheel_diameter>
 
-    <!-- Kinematic properties -->
-    <wheel_separation>0.45</wheel_separation>
-    <wheel_diameter>0.2</wheel_diameter>
 
-    <!-- Limits -->
-    <max_wheel_torque>20</max_wheel_torque>
-    <max_wheel_acceleration>1.0</max_wheel_acceleration>
+        <!-- Limits -->
+        <max_wheel_torque>200</max_wheel_torque>
+        <max_wheel_acceleration>10.0</max_wheel_acceleration>
 
-    <!-- Odometry parameters -->
-    <publish_odom>true</publish_odom>
-    <publish_odom_tf>true</publish_odom_tf>
-    <publish_wheel_tf>true</publish_wheel_tf>
-    <odometry_frame>odom</odometry_frame>
-    <robot_base_frame>base_footprint</robot_base_frame>
+        
+        <!-- Output -->
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
 
-    <!-- Topics -->
-    <command_topic>cmd_vel</command_topic>
-    <odometry_topic>odom</odometry_topic>
-  </plugin>
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+    </plugin>
 </gazebo>
 
 </robot>
